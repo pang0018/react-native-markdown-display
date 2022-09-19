@@ -254,6 +254,7 @@ const renderRules = {
   ),
   blocklink: (node, children, parent, styles, onLinkPress) => (
     <TouchableWithoutFeedback
+      accessibilityRole="button"
       key={node.key}
       onPress={() => openUrl(node.attributes.href, onLinkPress)}
       style={styles.blocklink}>
@@ -305,11 +306,27 @@ const renderRules = {
       {node.content}
     </Text>
   ),
-  textgroup: (node, children, parent, styles) => (
-    <Text key={node.key} style={styles.textgroup}>
-      {children}
-    </Text>
-  ),
+  textgroup: (node, children, parent, styles) => {
+    const hasButton =
+      children.filter((c) => c.props.accessibilityRole == 'button').length > 0;
+
+    let handlePress = null;
+    if (hasButton) {
+      handlePress = children.filter(
+        (c) => c.props.accessibilityRole == 'button',
+      )[0].props.onPress;
+    }
+
+    return (
+      <Text
+        accessibilityRole={hasButton ? 'button' : 'text'}
+        key={node.key}
+        onPress={hasButton ? handlePress : null}
+        style={styles.textGroup}>
+        {children}
+      </Text>
+    );
+  },
   paragraph: (node, children, parent, styles) => (
     <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
       {children}
