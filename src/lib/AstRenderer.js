@@ -20,6 +20,7 @@ export default class AstRenderer {
     allowedImageHandlers,
     defaultImageHandler,
     debugPrintTree,
+    testID,
   ) {
     this._renderRules = renderRules;
     this._style = style;
@@ -29,6 +30,7 @@ export default class AstRenderer {
     this._allowedImageHandlers = allowedImageHandlers;
     this._defaultImageHandler = defaultImageHandler;
     this._debugPrintTree = debugPrintTree;
+    this._testID = testID;
   }
 
   /**
@@ -85,6 +87,7 @@ export default class AstRenderer {
         parentNodes,
         this._style,
         this._onLinkPress,
+        this._testID,
       );
     }
 
