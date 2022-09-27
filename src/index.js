@@ -88,7 +88,6 @@ const getRenderer = (
   allowedImageHandlers,
   defaultImageHandler,
   debugPrintTree,
-  testID,
 ) => {
   if (renderer && rules) {
     console.warn(
@@ -126,7 +125,6 @@ const getRenderer = (
       allowedImageHandlers,
       defaultImageHandler,
       debugPrintTree,
-      testID,
     );
   }
 };
@@ -153,7 +151,6 @@ const Markdown = React.memo(
     ],
     defaultImageHandler = 'https://',
     debugPrintTree = false,
-    testID,
   }) => {
     const momoizedRenderer = useMemo(
       () =>
@@ -168,7 +165,6 @@ const Markdown = React.memo(
           allowedImageHandlers,
           defaultImageHandler,
           debugPrintTree,
-          testID,
         ),
       [
         maxTopLevelChildren,
@@ -181,7 +177,6 @@ const Markdown = React.memo(
         allowedImageHandlers,
         defaultImageHandler,
         debugPrintTree,
-        testID,
       ],
     );
 
@@ -231,7 +226,6 @@ Markdown.propTypes = {
   allowedImageHandlers: PropTypes.arrayOf(PropTypes.string),
   defaultImageHandler: PropTypes.string,
   debugPrintTree: PropTypes.bool,
-  testID: PropTypes.bool,
 };
 
 export default Markdown;

@@ -244,22 +244,20 @@ const renderRules = {
   ),
 
   // Links
-  link: (node, children, parent, styles, onLinkPress, testID) => (
+  link: (node, children, parent, styles, onLinkPress) => (
     <Text
       key={node.key}
       style={styles.link}
-      testID={testID}
       onPress={() => openUrl(node.attributes.href, onLinkPress)}>
       {children}
     </Text>
   ),
-  blocklink: (node, children, parent, styles, onLinkPress, testID) => (
+  blocklink: (node, children, parent, styles, onLinkPress) => (
     <TouchableWithoutFeedback
       accessibilityRole="button"
       key={node.key}
       onPress={() => openUrl(node.attributes.href, onLinkPress)}
-      style={styles.blocklink}
-      testID={testID}>
+      style={styles.blocklink}>
       <View style={styles.image}>{children}</View>
     </TouchableWithoutFeedback>
   ),
